@@ -88,10 +88,10 @@ const dbCtrl = {
         });
 
         // Building string of columns and column types.
-        let columnsToAdd = `(`;
+        let columnsToAdd = ``;
         for (let n in obj.valuesToInsert) columnsToAdd += ` "${n}" ${obj.valuesToInsert[n]},`;
-        columnsToAdd = columnsToAdd.slice(0, -1);
-        columnsToAdd += `)`;
+        columnsToAdd += ` "createdAt" NOW(), "updatedAt" NOW()`
+        columnsToAdd = `(${columnsToAdd.slice(1)})`;
 
         // Creating table and returning it.
         return sequelize.query(`CREATE TABLE IF NOT EXISTS ${obj.table} ${columnsToAdd}`)
