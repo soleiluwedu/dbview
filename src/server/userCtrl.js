@@ -50,6 +50,7 @@ userCtrl.insertEntry = (req, res) => {
 userCtrl.updateEntry = (req, res) => {
   dbCtrl.updateRow(req.body)
   .then( (result) => {
+    console.log(result);
     res.json(result);
   })
   .catch( (err) => {
@@ -68,6 +69,29 @@ userCtrl.deleteEntry = (req, res) => {
     res.end('error') 
   });  
 }
+
+userCtrl.rawQuery = (req, res) => {
+  dbCtrl.commandLine(req.body)
+  .then( (result) => {
+    console.log(result);
+    res.json(result);
+  })
+  .catch( (err) => {
+    console.log(err);
+    res.end('error') 
+  }); 
+}
+userCtrl.dropTable = (req, res) => {
+  dbCtrl.dropTable(req.body)
+  .then( (result) => {
+    res.json(result);
+  })
+  .catch( (err) => {
+    console.log(err);
+    res.end('error') 
+  }); 
+}
+
 
 module.exports = userCtrl;
 

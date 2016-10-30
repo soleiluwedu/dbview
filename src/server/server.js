@@ -16,5 +16,7 @@ app.post('/createTable', userCtrl.createTable);
 app.post('/insert', userCtrl.insertEntry);
 app.post('/update', userCtrl.updateEntry);
 app.post('/delete', userCtrl.deleteEntry);
+app.post('/query', userCtrl.rawQuery);
+app.post('/dropTable', userCtrl.dropTable);
 
 app.listen(3000, ()=> console.log('listening on port 3000'));

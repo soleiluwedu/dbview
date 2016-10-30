@@ -2,7 +2,8 @@
 class tableService {
   constructor() {
     this.activeTables = [];
-    this.tableData = {}
+    this.tableData = {};
+    this.currentTable = '';
   }
   setData(jsonData) {
     this.rawdata = jsonData
@@ -11,6 +12,8 @@ class tableService {
     this.activeTables.push(tablename)
   }
   addTableData(table, data) {
+    console.log('tableservice:', data);
+    console.log('table name', table);
     this.tableData[table] = data;
   }
   getData(table) {
