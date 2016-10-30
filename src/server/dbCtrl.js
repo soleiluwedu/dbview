@@ -90,12 +90,12 @@ const dbCtrl = {
         // Building string of columns and column types.
         let columnsToAdd = ``;
         for (let n in obj.valuesToInsert) columnsToAdd += ` "${n}" ${obj.valuesToInsert[n]},`;
-        columnsToAdd += ` "createdAt" NOW(), "updatedAt" NOW()`
+        columnsToAdd += ` "createdAt" TIME, "updatedAt" TIME`;
         columnsToAdd = `(${columnsToAdd.slice(1)})`;
 
         // Creating table and returning it.
-        return sequelize.query(`CREATE TABLE IF NOT EXISTS ${obj.table} ${columnsToAdd}`)
-            .then((results) => { return sequelize.query(`SELECT * FROM ${obj.table}`, { type: sequelize.QueryTypes.SELECT }) });
+        return sequelize.query(`CREATE TABLE IF NOT EXISTS ${obj.where} ${columnsToAdd}`)
+            .then((results) => { return sequelize.query(`SELECT * FROM ${obj.where}`, { type: sequelize.QueryTypes.SELECT }) });
     },
 
     dropTable: (obj) => {
